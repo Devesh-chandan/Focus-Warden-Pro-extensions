@@ -1,0 +1,259 @@
+<!-- <!doctype html>
+<html>
+  <head>
+    <style>
+      :root {
+        --primary: #007aff;
+        --danger: #ff3b30;
+        --bg: #ffffff;
+        --secondary: #f2f2f7;
+      }
+      body {
+        width: 320px;
+        padding: 20px;
+        font-family: -apple-system, sans-serif;
+        background: var(--bg);
+        margin: 0;
+      }
+      .header {
+        font-weight: 800;
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: var(--primary);
+        text-align: center;
+        letter-spacing: -0.5px;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      #setTab {
+        background: var(--primary);
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      #setTab:hover {
+        background: #0063d1;
+        transform: translateY(-1px);
+      }
+
+      #deactivateAll {
+        background: #f2f2f7;
+        color: var(--danger);
+        margin-bottom: 20px;
+        font-size: 13px;
+      }
+      #deactivateAll:hover {
+        background: #ffe5e5;
+      }
+
+      .tab-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        background: var(--secondary);
+        border-radius: 14px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.02);
+      }
+      .tab-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 190px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #1c1c1e;
+      }
+      .del-btn {
+        color: var(--danger);
+        cursor: pointer;
+        font-weight: 700;
+        background: none;
+        border: none;
+        font-size: 11px;
+        padding: 5px;
+      }
+
+      #list {
+        max-height: 280px;
+        overflow-y: auto;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">Focus Warden Pro</div>
+    <button id="setTab" class="btn">Lock Current Tab</button>
+    <button id="deactivateAll" class="btn">Deactivate All</button>
+    <div id="list"></div>
+    <script src="popup.js"></script>
+  </body>
+</html> -->
+
+<!doctype html>
+<html>
+  <head>
+    <style>
+      :root {
+        --primary: #007aff;
+        --danger: #ff3b30;
+        --bg: #f8f9fa;
+        --card: #ffffff;
+        --text: #1c1c1e;
+        --secondary-text: #8e8e93;
+      }
+      body {
+        width: 320px;
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        height: 420px;
+      }
+      .header {
+        padding: 24px 20px;
+        background: linear-gradient(135deg, #007aff 0%, #0051ff 100%);
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+      }
+      .header h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+      .header p {
+        margin: 4px 0 0;
+        font-size: 12px;
+        opacity: 0.8;
+      }
+
+      .main-action {
+        padding: 20px;
+      }
+      #setTab {
+        width: 100%;
+        padding: 14px;
+        background: var(--card);
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      #setTab:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      .list-container {
+        flex: 1;
+        padding: 0 20px;
+        overflow-y: auto;
+      }
+      .section-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--secondary-text);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        letter-spacing: 0.5px;
+      }
+
+      .tab-item {
+        background: var(--card);
+        padding: 12px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      }
+      .tab-info {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .tab-title {
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+      }
+      .del-btn {
+        background: #fff0f0;
+        color: var(--danger);
+        border: none;
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-size: 10px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .del-btn:hover {
+        background: var(--danger);
+        color: white;
+      }
+
+      .footer {
+        padding: 15px 20px;
+        background: var(--card);
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: center;
+      }
+      #deactivateAll {
+        background: none;
+        border: none;
+        color: var(--danger);
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h2>Focus Warden</h2>
+      <p id="badge-status">Guardian is Idle</p>
+    </div>
+
+    <div class="main-action">
+      <button id="setTab">+ Protect Current Session</button>
+    </div>
+
+    <div class="list-container">
+      <div class="section-title">Active Shields</div>
+      <div id="list"></div>
+    </div>
+
+    <div class="footer">
+      <button id="deactivateAll">Disable All Protections</button>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
